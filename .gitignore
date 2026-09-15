@@ -1,0 +1,343 @@
+ # Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Vendored upstream repos checked out for development reference. Tracked
+# separately as siblings (each lives under external_dependencies/ but is
+# its own git repo, not part of this tree).
+/external_dependencies/Isaac-GR00T/
+/external_dependencies/GR00T-VisualSim2Real/
+
+# C extensions
+
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ROS 2 / colcon build artefacts created at repo root when the workspace
+# is built in-place (only happens on dev machines / PC2 mirror; CI uses
+# isolated build dirs under /home/run/getsolo/ on PC2). The install/ and
+# log/ dirs carry COLCON_IGNORE markers, so colcon itself treats them
+# as terminal -- safe to drop from version control.
+/install/
+/log/
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+# data/ is generally untracked (large local datasets), but specific
+# subdirectories are whitelisted below as paper / archive provenance.
+data/*
+# Whitelist: operator VR calibrations (small yaml, shipped with repo).
+!data/operator_calibrations/
+# Whitelist: paper provenance archive (sim-to-real anchor recordings,
+# matching plots, and per-anchor SUMMARY docs). Tracked in git so the
+# paper artefacts travel with the repo.
+!data/sim_to_real_anchors/
+# Whitelist: shipped deploy policies (each individually re-included
+# down in the model-checkpoints section below, since the *.onnx
+# blanket rule there would otherwise re-ignore them).
+!data/policies/
+
+# …but inside the whitelisted sim-to-real anchors, the heavy per-run
+# binaries (motion bakes, replay videos, raw obs npz, per-tick csv logs)
+# are regenerable locally and would balloon repo size. Keep the README /
+# manifest / eval markdown trackable, drop the blobs.
+data/sim_to_real_anchors/**/*.pkl
+data/sim_to_real_anchors/**/*.mp4
+data/sim_to_real_anchors/**/*.npz
+data/sim_to_real_anchors/**/*.csv
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# UV
+#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#uv.lock
+
+# poetry
+#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+#poetry.lock
+
+# pdm
+#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
+#pdm.lock
+#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
+#   in version control.
+#   https://pdm.fming.dev/latest/usage/project/#working-with-version-control
+.pdm.toml
+.pdm-python
+.pdm-build/
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# IDE
+.idea/
+.vscode/
+
+# log
+outputs/
+
+# Ruff stuff:
+.ruff_cache/
+
+# PyPI configuration file
+.pypirc
+
+outputs/
+
+.DS_Store
+
+# Hugging Face upload/maintenance scripts (internal use only)
+huggingface/
+
+# Model checkpoints (download via download_from_hf.py)
+*.onnx
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.engine
+!decoupled_wbc/sim2mujoco/resources/robots/g1/policy/GR00T-WholeBodyControl-Balance.onnx
+!decoupled_wbc/sim2mujoco/resources/robots/g1/policy/GR00T-WholeBodyControl-Walk.onnx
+# X2 SONIC deploy policy (trained on H200, iter 25000, sphere-feet 2026-05-01).
+# Source checkpoint: model_step_025000_g1.onnx from the h200-iter-25000-sphere-feet-20260501
+# run; renamed here for an embodiment-stable filename the deploy can default to.
+# Stored via git-lfs (see .gitattributes *.onnx rule).
+!data/policies/agibot_x2_sonic.onnx
+!motionbricks/out/**/*.ckpt
+
+
+# Mujoco
+MUJOCO_LOG.TXT
+
+# IsaacDeploy
+external_dependencies/isaac_teleop_app/isaac-deploy
+external_dependencies/doc/
+
+# XRoboToolkit pybind (cloned locally on aarch64 by install_pico.sh)
+external_dependencies/XRoboToolkit-PC-Service-Pybind/
+
+# UV
+uv.lock
+
+# Virtual environments (created by install_scripts/)
+.venv_sim/
+.venv_teleop/
+.venv_data_collection/
+.venv_camera/
+.venv_inference/
+
+# Isolated viewer venv (rerun-sdk 0.31.4 + numpy>=2, separate from
+# planner .venv/ to avoid the pinocchio/numpy incompatibility -- see
+# gear_sonic/scripts/view_x2_recorded_dataset.sh).
+.venv-viewer/
+
+# XRoboToolkit-PC-Service-Pybind
+xrobotoolkit_sdk.cpython-*-*-*.so
+teleop_vids/
+*.code-workspace
+
+# Quest 3 TLS certificates (generated locally)
+gear_sonic/utils/teleop/vr/quest3_certs/
+
+# Motion/training data (large local datasets, not tracked in git)
+data/motion_lib_bones_seed
+bones_seed_smpl/
+sonic_release/
+
+# Local motion libraries (rebuilt by gear_sonic/scripts/build_x2_planner_motion_lib.py
+# and friends from upstream mocap; tens to hundreds of MB each, regenerable,
+# not source-of-truth for the repo). Recipes that produce them ARE tracked
+# (see gear_sonic/data/x2_planner_primitives_recipes.yaml etc).
+gear_sonic/data/motions/*.pkl
+# shipped-with-repo exceptions (LFS; mirror of the review repo):
+!gear_sonic/data/motions/x2_pad_banks.pkl
+
+# Demo-day sync bundle assembled by gear_sonic/scripts/build_demo_bundle.py.
+# The demo_bundle/ directory itself IS tracked so the demo machine can
+# `git pull` the same data the build machine snapshotted; the gzipped
+# tarball next to it (--tar) is a redundant archive and stays ignored.
+/demo_bundle.tar.gz
+
+# Synthetic-data-generation (SDG) USD assets. The `grab/` subtree is the
+# upstream GRAB hand-object capture archive (~855 MB, CC-BY-NC, fetched
+# externally), and `simple/` holds bulky binary `.usd` props (table /
+# tray / bottle ~ 14 MB total) sourced from Omniverse-style libraries.
+# Both are regenerable from upstream / re-downloaded on demand and would
+# blow up clone size if tracked. Any hand-authored SDG sources (Python
+# generators under gear_sonic/sdg/{robots,scenes}/, recipe YAMLs, etc.)
+# stay tracked -- only the binary/large asset payload is ignored.
+gear_sonic/sdg/assets/
+
+# Training output logs
+logs_rl/
+logs_eval/
+
+# Model checkpoints directory
+models/
+
+# Downloaded from HuggingFace (hf download)
+sample_data/
+sonic_release/
+
+# Agibot X2 (local reference material & notes; not tracked for now)
+agibot-x2-references/
+
+# Personal local dev notes (not tracked)
+vastai-dev-notes.md
+*-dev-notes.md
+
+# X2 deploy: per-run robot logs (binary obs dumps, tick.csv, target_pos.csv,
+# joint_pos.csv etc). Generated under logs/x2/<runtag>/ by deploy_x2.sh and
+# the offline parity tools. They're large (tens of MB per run), regenerated
+# on every smoke test, and only useful in the originating workspace.
+logs/x2/
+
+# Generic per-workstation scratch space used by debugging tools (e.g.
+# obs-dump blobs, ad-hoc captures). Never check in.
+scratch/
+
+# X2 MC-motor scan output (gear_sonic_deploy/scripts/x2_scan_mc_motors.sh).
+# Each run drops one mc_motor_scan_<unix_ts>.jsonl in the working
+# directory (typically the repo root). They're per-operator-session
+# captures of the MC's published kp/kd/target plus measured joint state
+# for a nudge test, used to derive the values shipped in
+# gear_sonic_deploy/configs/real_deploy_tuning/expressive.yaml. Re-run
+# the scanner to regenerate; the YAML preset is the durable artifact.
+mc_motor_scan_*.jsonl
+
+# Standalone CMake build dir we use for the offline unit tests in
+# gear_sonic_deploy/src/x2/agi_x2_deploy_onnx_ref/. The colcon build/
+# directory is already covered by the toplevel build/ rule, but
+# build_offline/ is hand-driven by `cmake -B build_offline ...` and won't
+# match it.
+build_offline/
+agibot_x2_embodiment.md
+
+# Cursor IDE per-session scratch (plan files, chat scratchpads, etc.) lands
+# under .cursor/ and is operator-local noise. Shared workspace config that
+# we *do* want tracked lives under .cursor/rules/ (rule .mdc files); the
+# carve-out below keeps that subtree visible so rules can be committed.
+# Use `.cursor/*` (NOT `.cursor/`) so git still recurses into .cursor/ and
+# the `!.cursor/rules/` re-include can take effect -- a `.cursor/` rule
+# would exclude the whole tree and negations couldn't bring anything back.
+.cursor/*
+!.cursor/rules/
+
+# Python virtualenv at repo root (uv venv .venv)
+.venv/
+.x2_pc2_host
