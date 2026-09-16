@@ -70,3 +70,33 @@ Pico -> XRoboToolkit PC Service (:60061)
 ```
 
 日志位于 `/agibot/data/home/agi/gear-sonic/log/`。
+
+## Git LFS 与仓库同步
+
+仓库中的大二进制不直接写入普通 Git 对象，而是由 Git LFS 存储。当前受 LFS
+管理的内容包括模型权重与 checkpoint、ONNX 策略、USD 机器人资产、共享库（SO）、
+视频（MP4）和 Linux 安装包（DEB）。首次完整拉取前，先安装并启用 Git LFS：
+
+```bash
+git lfs install
+git clone https://github.com/ClementHW/sonic-x2.git
+cd sonic-x2
+git lfs pull
+```
+
+仓库默认不自动拉取 MotionBricks 的大 checkpoint。如需运行 MotionBricks，再显式
+下载这些权重：
+
+```bash
+git lfs pull --include="motionbricks/out/**" --exclude=""
+```
+
+可用 `git lfs ls-files` 检查本地已登记的 LFS 文件。新增大型二进制文件时，先使用
+`git lfs track '<pattern>'` 更新 `.gitattributes`，再执行 `git add`；不要把权重、
+模型、视频或安装包直接作为普通 Git blob 提交。
+
+## main 分支保护
+
+`main` 是受保护分支。所有变更必须通过 Pull Request，并由代码所有者
+`@ClementHW` 审核批准后才能合并。规则同样约束管理员：不允许直接推送、强制推送、
+删除分支或绕过审核。
