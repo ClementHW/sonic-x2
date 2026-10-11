@@ -93,8 +93,7 @@ Sanity check:
 ## 3. Download models
 
 Model checkpoints are hosted on Hugging Face, **not** in the repo:
-`tinkerbuggy/sonic-x2` (private at the moment — request access, then
-`hf auth login`). They live in the **SONIC model cache** — a fixed,
+`ClementHW/sonic-x2` (public). They live in the **SONIC model cache** — a fixed,
 multi-embodiment location the stack scripts probe automatically:
 
 - root: `$SONIC_HOME`, default `~/.cache/sonic`
@@ -240,7 +239,7 @@ Notes:
    required (would fit naturally in `[sim]` or a new `[deploy]` extra;
    `setup_x2.sh` installs it for you).
 2. ~~`download_from_hf.py` is G1-only~~ — FIXED: `--robot x2` downloads the
-   `tinkerbuggy/sonic-x2` snapshot into the model cache.
+   `ClementHW/sonic-x2` snapshot into the model cache.
 3. ~~stack scripts default to machine-specific checkpoint paths~~ — FIXED:
    all stack entrypoints and `eval_x2_mujoco_onnx.py` now resolve models from
    the cache (`$SONIC_X2_MODELS` > `$SONIC_HOME/x2`) before the legacy paths.

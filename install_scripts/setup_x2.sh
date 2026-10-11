@@ -18,7 +18,7 @@
 #
 # Model cache layout (multi-embodiment):
 #   $SONIC_HOME             root, default ~/.cache/sonic
-#   $SONIC_HOME/x2          X2 artifacts (HF tinkerbuggy/sonic-x2 layout);
+#   $SONIC_HOME/x2          X2 artifacts (HF ClementHW/sonic-x2 layout);
 #                           this subtree alone is overridable via
 #                           $SONIC_X2_MODELS
 #   $SONIC_HOME/g1          G1 artifacts (nvidia/GEAR-SONIC, via
@@ -108,8 +108,7 @@ if [[ "${SKIP_MODELS}" -eq 1 ]]; then
 elif [[ "${missing}" -eq 0 ]]; then
     note "all key model files already present — skipping download"
 else
-    note "the HF repo (tinkerbuggy/sonic-x2) is private until release:"
-    note "if the download fails with 401/403, request access and run 'hf auth login' first."
+    note "the HF repo (ClementHW/sonic-x2) is public:"
     SONIC_HOME="${SONIC_HOME}" SONIC_X2_MODELS="${SONIC_X2_MODELS}" \
         "${PY}" "${REPO_ROOT}/download_from_hf.py" --robot x2 \
         || fail "model download failed (private repo? run: ${VENV}/bin/hf auth login)"
