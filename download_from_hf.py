@@ -4,7 +4,7 @@ Download GEAR-SONIC model checkpoints and training data from Hugging Face Hub.
 
 Repository: https://huggingface.co/nvidia/GEAR-SONIC
 
-X2 checkpoints (tinkerbuggy/sonic-x2) are supported via --robot x2.
+X2 checkpoints (ClementHW/sonic-x2) are supported via --robot x2.
 Default download root is the SONIC model cache: $SONIC_HOME
 (~/.cache/sonic), with per-robot subtrees g1/, x2/ (and future
 embodiments). The X2 subtree alone can be redirected via $SONIC_X2_MODELS.
@@ -27,7 +27,7 @@ import sys
 from pathlib import Path
 
 REPO_ID = "nvidia/GEAR-SONIC"
-X2_REPO_ID = "tinkerbuggy/sonic-x2"
+X2_REPO_ID = "ClementHW/sonic-x2"
 
 
 def sonic_home() -> Path:
@@ -81,7 +81,7 @@ def parse_args():
         help=(
             "Which embodiment's checkpoints to download. 'g1' (default) keeps "
             "the original nvidia/GEAR-SONIC behaviour; 'x2' fetches the full "
-            "tinkerbuggy/sonic-x2 snapshot into $SONIC_HOME/x2 "
+            "ClementHW/sonic-x2 snapshot into $SONIC_HOME/x2 "
             "(or $SONIC_X2_MODELS)."
         ),
     )
@@ -229,8 +229,9 @@ def download_x2(snapshot_download, output_dir, token=None):
     print(f"  Output dir : {output_dir}")
     print("=" * 60)
     print(
-        "\n  Note: the repo is private until release — if the download 401s,\n"
-        "  request access and authenticate via `hf auth login` (or pass --token).\n"
+        "\n  Note: the repo is public. If a download ever 401s (e.g. it has\n"
+        "  been switched to gated), authenticate via `hf auth login` (or pass\n"
+        "  --token).\n"
     )
     output_dir.mkdir(parents=True, exist_ok=True)
     snapshot_download(
@@ -255,7 +256,7 @@ def main():
     if args.robot == "x2":
         if args.training or args.sample or args.low_latency:
             print(
-                "ERROR: --robot x2 downloads the full tinkerbuggy/sonic-x2 "
+                "ERROR: --robot x2 downloads the full ClementHW/sonic-x2 "
                 "snapshot; the G1 selection flags (--training/--sample/"
                 "--low-latency) do not apply.",
                 file=sys.stderr,
